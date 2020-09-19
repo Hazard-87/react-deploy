@@ -21,7 +21,12 @@ const MyProfile = (props) => {
                 <div class='col-6' className={styles.avatar}>
                     <img src={!props.profile.photos.large ? userPhoto : props.profile.photos.large}/>
                     {props.isOwner &&
-                    <input className={styles.mainPhoto} name='file' type='file' onChange={onSelectedPhoto}/>}
+                    <div className={styles.button}>
+                        <label class="btn form-control">
+                            Сменить фото <input  name='file' type="file" onChange={onSelectedPhoto} hidden/>
+                        </label>
+                    </div>
+                    }
                 </div>
                 <div class='col-6' className={styles.profile}>
                     <p className={styles.name}>{props.profile.fullName}</p>

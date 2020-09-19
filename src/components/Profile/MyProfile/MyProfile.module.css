@@ -24,3 +24,11 @@
 .contact {
     padding-left: 10px;
 }
+.button {
+    opacity: 30%;
+    margin-left: 15px;
+}
+.button:hover {
+    opacity: 100%;
+    margin-left: 15px;
+}
