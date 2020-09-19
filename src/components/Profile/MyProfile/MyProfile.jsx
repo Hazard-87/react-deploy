@@ -1,31 +1,53 @@
 import React from 'react';
-import classes from './MyProfile.module.css';
-import ProfileStatus from './ProfileStatus';
+import styles from './MyProfile.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from '../../../assets/images/user.png';
 
 const MyProfile = (props) => {
-  if (!props.profile.photos) {
-    return <Preloader/>
-  }
+    if (!props.profile.photos) {
+        return <Preloader/>
+    }
 
-  return (
-    <div className={classes.content}>
-      <div className={classes.phone}></div>
-      <div>
-        <div className={classes.avatar}>
-          <img src={!props.profile.photos.large && userPhoto}/>
+    const onSelectedPhoto = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
+
+    return (
+        <div className={styles.content}>
+            <div class='row'>
+                <div class='col-6' className={styles.avatar}>
+                    <img src={!props.profile.photos.large ? userPhoto : props.profile.photos.large}/>
+                    {props.isOwner &&
+                    <input className={styles.mainPhoto} name='file' type='file' onChange={onSelectedPhoto}/>}
+                </div>
+                <div class='col-6' className={styles.profile}>
+                    <p className={styles.name}>{props.profile.fullName}</p>
+                    <ProfileStatusWithHooks {...props} status={props.status} updateStatus={props.updateStatus}/>
+                    <ProfileData {...props}/>
+                </div>
+            </div>
         </div>
-        <div className={classes.profile}>
-          <p className={classes.name}>{props.profile.fullName}</p>
-          < ProfileStatusWithHooks {...props} status={props.status} updateStatus={props.updateStatus}/>
-          <p>About Me: {props.profile.aboutMe}</p>
-          <p >Facebook: <a href='https://ru-ru.facebook.com/'>{props.profile.contacts.facebook}</a></p>
+    )
+}
+
+const ProfileData = (props) => {
+    return <div>
+        <div><b>About me</b>:</div>
+        <div><b>lookingForAJob</b>:</div>
+        <div><b>lookingForAJobDescription</b>:</div>
+        <div><b>Contacts</b>:{Object.keys(props.profile.contacts).map(key => {
+                return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
+            }
+        )}
         </div>
-      </div>
     </div>
-  )
+}
+
+const Contact = ({contactTitle, contactValue}) => {
+    return <div className={styles.contact}><b>{contactTitle}</b>: {contactValue}</div>
 }
 
 export default MyProfile;

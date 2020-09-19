@@ -37,7 +37,7 @@ let MyPostsForm = (props) => {
                        placeholder={'Your post...'} validate={[required, maxLength]}/>
             </div>
             <div>
-                <button className={classes.send}>Send</button>
+                <button class='btn btn-success btn-sm'>Send</button>
             </div>
         </form>
     )

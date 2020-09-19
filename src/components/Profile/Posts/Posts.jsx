@@ -25,7 +25,7 @@ const Posts = (props) => {
               <textarea className={classes.newComment} ref={newCreatePost} cols='50' rows='1' type="text" placeholder='Comments...'></textarea>
               </div>
               <div>
-              <button className={classes.send} onClick={newPost}>Send</button>
+              <button class='btn btn-success btn-sm' onClick={newPost}>comment</button>
           </div>
       </div>
   )

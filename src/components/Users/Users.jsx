@@ -8,9 +8,6 @@ import Paginator from "../common/Paginator/Paginator";
 let Users = (props) => {
     let p = props.currentPage + 1
 
-    // if (props.isFetching) {
-    //     return <Preloader />
-    // }
     return <div className={classes.body}>
         <Paginator totalPageCount={props.totalPageCount} pageSize={props.pageSize}
                    currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>
@@ -30,7 +27,7 @@ let Users = (props) => {
                         </div>
                         <NavLink to={'/profile/' + user.id}>
                         <div className={classes.img}>
-                            <img src={user.photos.small != null ? user.photos.small : userPhoto}/>
+                            <img src={user.photos.small != null ? user.photos.large : userPhoto}/>
                         </div>
                         <div>{user.name}</div>
                         <div className={classes.status}>{user.status}</div>

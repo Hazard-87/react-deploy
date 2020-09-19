@@ -29,12 +29,12 @@ const maxLength = maxLengthCreator(50)
 const AddMessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field className={classes.sms} component={Textarea} name={'newMessageBody'}
+            <div class={'form-group'}>
+                <Field  className={classes.sms} component={Textarea} name={'newMessageBody'}
                        placeholder={'Enter your message...'} validate={[required, maxLength]}/>
             </div>
-            <div>
-                <button className={classes.chatSend}>Send</button>
+            <div className={classes.chatSend}>
+                <button class='btn btn-success btn-sm' >Send</button>
             </div>
         </form>
     )

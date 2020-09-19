@@ -25,7 +25,7 @@ const ProfileStatusWithHooks = (props) => {
 
     return (
         <div className={styles.status}>
-            {editMode && (props.authorizesUserId == props.match.params.userId)
+            {editMode
                 ? <div><input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={status}/>
                 </div>
                 : <div><span onClick={activateEditMode}>{props.status || '-----'}</span></div>

@@ -12,8 +12,14 @@ const Header = (props) => {
             <img src='http://pngimg.com/uploads/vkontakte/vkontakte_PNG31.png'/>
             <div className={classes.login}>
                 {props.isAuth
-                    ? <div><span>{props.login}</span>
-                        <button onClick={props.logout}>log out</button>
+                    ? <div class='dropdown'>
+                        <button class='btn dropdown-toggle' data-toggle='dropdown'><span>
+                            <img src={props.profile.photos.small}/></span>
+                        </button>
+                        <ul class='dropdown-menu'>
+                            <li class='dropdown-divider'></li>
+                            <li><button class='btn form-control' onClick={props.logout}>log out</button></li>
+                        </ul>
                     </div>
                     : <NavLink to={'/login'}>login</NavLink>}
             </div>

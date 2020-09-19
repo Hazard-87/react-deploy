@@ -12,16 +12,26 @@ const handleFocus = (event) => event.target.select();
 
 const LoginForm = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div className={styles.input}><Field placeholder={'email'} name={'email'} onFocus={handleFocus}
-                                                 component={Input} validate={[required]}/></div>
-            <div className={styles.input}><Field placeholder={'password'} name={'password'} type={'password'} onFocus={handleFocus}
-                                                 component={Input} validate={[required]}/></div>
-            <div><Field component={Input} className={styles.checkbox} name={'rememberMe'} type={'checkbox'}/>remember
-                me
+        <form onSubmit={props.handleSubmit} role='form'>
+            <div class='form-group'>
+                <label for='email'>Email</label>
+                <Field placeholder={'email'} name={'email'} type='email' class='form-control' onFocus={handleFocus}
+                       component={Input} validate={[required]}/>
             </div>
-            <div>
-                <button className={styles.login}>Login</button>
+            <div className={styles.input}>
+                <label for='password'>Password</label>
+                <Field placeholder={'password'} name={'password'} type='password' class='form-control'
+                       onFocus={handleFocus}
+                       component={Input} validate={[required]}/>
+            </div>
+            <div class='checkbox'>
+                <label for='password'>
+                    <Field component={Input} className={styles.checkbox} name={'rememberMe'} type={'checkbox'}/>remember
+                    me
+                </label>
+            </div>
+            <div className={styles.login}>
+                <button class='btn btn-success'>Login</button>
             </div>
             {props.error && <div className={classes.formSummaryError}>
                 {props.error}
@@ -32,27 +42,23 @@ const LoginForm = (props) => {
 }
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
-
 const Login = (props) => {
     const onSubmit = (formData) => {
         props.login(formData.email, formData.password, formData.rememberMe)
-        // formData.email = ''
-        // formData.password = ''
     }
 
-    if(props.isAuth) {
-        return <Redirect to={`/profile/${props.authorizesUserId}`}/>
+    if (props.isAuth) {
+        return <Redirect to={`/profile`}/>
     }
 
-        return (
-            <div className={styles.body}>
-                <div className={styles.wrap}>
-                    <h2>Login</h2>
-                    <LoginReduxForm onSubmit={onSubmit}/>
-                </div>
+    return (
+        <div className={styles.body}>
+            <div className={styles.wrap}>
+                <LoginReduxForm onSubmit={onSubmit}/>
             </div>
-        )
-    }
+        </div>
+    )
+}
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,

@@ -1,5 +1,5 @@
-import React, {Suspense} from 'react';
-import {withRouter, BrowserRouter, Route} from "react-router-dom";
+import React from 'react';
+import {withRouter, Route, HashRouter} from "react-router-dom";
 import './App.css';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
@@ -27,7 +27,7 @@ class App extends React.Component {
            return <Preloader />
         }
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <div className='appWrapper'>
                     <HeaderContainer/>
                     <NavContainer/>
@@ -39,9 +39,10 @@ class App extends React.Component {
                         <Route path='/users' render={withSuspense(UsersContainer)}/>
                         <Route path='/settings' render={() => <Settings/>}/>
                         <Route path='/login' render={() => <Login/>}/>
+                        
                     </div>
                 </div>
-            </BrowserRouter>
+            </HashRouter>
         );
     }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Nav.module.css';
 import {NavLink} from "react-router-dom";
 import Friends from "./Friends/Friends";
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
+import classNames from 'classnames';
 
 class Nav extends React.Component {
     friendsElements = () => {
@@ -12,7 +12,7 @@ class Nav extends React.Component {
     render() {
         return (
             <nav className={classes.nav}>
-                <div className={classes.item}><NavLink to={`/profile/${this.props.authorizesUserId}`}
+                <div className={classes.item}><NavLink to={`/profile`}
                                                        activeClassName={classes.active}>Profile</NavLink>
                 </div>
                 <div className={classes.item}><NavLink to='/news'
