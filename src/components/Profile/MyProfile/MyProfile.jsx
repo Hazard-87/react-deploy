@@ -22,7 +22,7 @@ const MyProfile = (props) => {
                     <img src={!props.profile.photos.large ? userPhoto : props.profile.photos.large}/>
                     {props.isOwner &&
                     <div className={styles.button}>
-                        <label class="btn form-control">
+                        <label class="btn">
                             Сменить фото <input  name='file' type="file" onChange={onSelectedPhoto} hidden/>
                         </label>
                     </div>

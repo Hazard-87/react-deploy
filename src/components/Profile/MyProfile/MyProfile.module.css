@@ -25,10 +25,13 @@
     padding-left: 10px;
 }
 .button {
-    opacity: 30%;
     margin-left: 15px;
 }
-.button:hover {
+.button label{
+    opacity: 50%;
+    width: 200px;
+}
+.button:hover label{
     opacity: 100%;
-    margin-left: 15px;
+    width: 200px;
 }
